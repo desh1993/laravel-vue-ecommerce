@@ -1,15 +1,23 @@
 <template>
     <div>
         <h2>Main Base</h2>
-        <ChildBase>
-            <template v-slot:header>
-                <h3>Here might be a page title</h3>
-            </template>
-            <p>A paragraph for the main content.</p>
-            <p>And another one.</p>
-            <template v-slot:article>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. A unde, distinctio esse facilis possimus voluptate sunt officiis libero eius, doloremque nulla! Necessitatibus ipsum praesentium optio quas minima asperiores nam unde.</p>
-            </template>
+        <button
+        class="btn btn-success"
+        @click="showing = true"
+        >
+            Show Modal
+        </button>
+        <ChildBase :showing="showing" @close="close">
+            <h2>Example modal</h2>
+            <form>
+                <label>Name:</label>
+                <input type="text" name="name" id="">
+
+                <label>Age:</label>
+                <input type="text" name="name" id="">
+
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
         </ChildBase>
     </div>
 </template>
@@ -21,7 +29,12 @@ export default {
     } , 
     data() {
         return {
-
+            showing: false
+        }
+    } ,
+    methods: {
+        close(e) {
+            this.showing = false;
         }
     }
 }
